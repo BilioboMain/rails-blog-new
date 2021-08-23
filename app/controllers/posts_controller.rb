@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-
-
-
-
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   # rescue_from ActiveRecord::RecordNotFound, with: :record_now_found_handler
@@ -22,27 +18,26 @@ class PostsController < ApplicationController
     puts response.to_a
   end
 
-
-  #def show
-  #  respond_to do |format|
-  #    format.html
-  #    format.pdf do
-  #      render pdf: "file_name"   # Excluding ".pdf" extension.
-  #    end
-  #  end
-  #end
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'file_name', template: 'posts/show.html.erb' # Excluding ".pdf" extension.
+      end
+    end
+  end
 
   # GET /posts/1 or /posts/1.json
- # def show
-    # respond_to do |format|
-    # format.html
-    # format.json
-    # #format.xml {render xml: @post}
-    # #format.rtf{render rtf: @post}
-    # end
-    # binding.pry
-    # flash.now[:notice] = 'Somenot'
-  #end
+  # def show
+  # respond_to do |format|
+  # format.html
+  # format.json
+  # #format.xml {render xml: @post}
+  # #format.rtf{render rtf: @post}
+  # end
+  # binding.pry
+  # flash.now[:notice] = 'Somenot'
+  # end
 
   # GET /posts/new
   def new
@@ -96,12 +91,14 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
   end
+
   # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:title, :body, :published)
