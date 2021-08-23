@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+
+
+
+
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-  around_action :shower
   # rescue_from ActiveRecord::RecordNotFound, with: :record_now_found_handler
-
+  around_action :shower
   # GET /posts or /posts.json
   def index
     @posts = Post.all
@@ -12,15 +15,25 @@ class PostsController < ApplicationController
 
   def shower
     puts 'params'
+    yield
     puts 'request'
     puts request.body.read
     puts 'response'
     puts response.to_a
-    yield
   end
 
+
+  #def show
+  #  respond_to do |format|
+  #    format.html
+  #    format.pdf do
+  #      render pdf: "file_name"   # Excluding ".pdf" extension.
+  #    end
+  #  end
+  #end
+
   # GET /posts/1 or /posts/1.json
-  def show
+ # def show
     # respond_to do |format|
     # format.html
     # format.json
@@ -29,7 +42,7 @@ class PostsController < ApplicationController
     # end
     # binding.pry
     # flash.now[:notice] = 'Somenot'
-  end
+  #end
 
   # GET /posts/new
   def new
@@ -83,14 +96,12 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
   end
-
   # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:title, :body, :published)
