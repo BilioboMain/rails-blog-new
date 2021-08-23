@@ -1,0 +1,16 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: '2.7.4'
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/**'
+
+Layout/LineLength:
+  Max: 300
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 1000
+
