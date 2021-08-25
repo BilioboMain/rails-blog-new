@@ -2,14 +2,18 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
+<<<<<<< HEAD
   #around_action :shower
+=======
+>>>>>>> html_to_pdf
   # rescue_from ActiveRecord::RecordNotFound, with: :record_now_found_handler
-
+  around_action :shower
   # GET /posts or /posts.json
   def index
     @posts = Post.all
   end
 
+<<<<<<< HEAD
   #def shower
   #  puts 'params'
   #  puts 'request'
@@ -18,22 +22,45 @@ class PostsController < ApplicationController
   #  puts response.to_a
   #  yield
   #end
+=======
+  def shower
+    puts 'params'
+    yield
+    puts 'request'
+    puts request.body.read
+    puts 'response'
+    puts response.to_a
+  end
+>>>>>>> html_to_pdf
+
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'file_name', template: 'posts/show.html.erb' # Excluding ".pdf" extension.
+      end
+    end
+  end
 
   # GET /posts/1 or /posts/1.json
-  def show
-    # respond_to do |format|
-    # format.html
-    # format.json
-    # #format.xml {render xml: @post}
-    # #format.rtf{render rtf: @post}
-    # end
-    # binding.pry
-    # flash.now[:notice] = 'Somenot'
-  end
+  # def show
+  # respond_to do |format|
+  # format.html
+  # format.json
+  # #format.xml {render xml: @post}
+  # #format.rtf{render rtf: @post}
+  # end
+  # binding.pry
+  # flash.now[:notice] = 'Somenot'
+  # end
 
   # GET /posts/new
   def new
     @post = Post.new
+  end
+
+  def putetter
+    puts 'bbbbbbb'
   end
 
   # GET /posts/1/edit
