@@ -2,36 +2,21 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-<<<<<<< HEAD
-  #around_action :shower
-=======
->>>>>>> html_to_pdf
   # rescue_from ActiveRecord::RecordNotFound, with: :record_now_found_handler
-  around_action :shower
+  #around_action :shower
   # GET /posts or /posts.json
   def index
     @posts = Post.all
   end
 
-<<<<<<< HEAD
   #def shower
   #  puts 'params'
+  #  yield
   #  puts 'request'
   #  puts request.body.read
   #  puts 'response'
   #  puts response.to_a
-  #  yield
   #end
-=======
-  def shower
-    puts 'params'
-    yield
-    puts 'request'
-    puts request.body.read
-    puts 'response'
-    puts response.to_a
-  end
->>>>>>> html_to_pdf
 
   def show
     respond_to do |format|
