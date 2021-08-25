@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-  around_action :shower
+  #around_action :shower
   # rescue_from ActiveRecord::RecordNotFound, with: :record_now_found_handler
 
   # GET /posts or /posts.json
@@ -10,14 +10,14 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  def shower
-    puts 'params'
-    puts 'request'
-    puts request.body.read
-    puts 'response'
-    puts response.to_a
-    yield
-  end
+  #def shower
+  #  puts 'params'
+  #  puts 'request'
+  #  puts request.body.read
+  #  puts 'response'
+  #  puts response.to_a
+  #  yield
+  #end
 
   # GET /posts/1 or /posts/1.json
   def show
