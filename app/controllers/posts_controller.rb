@@ -3,20 +3,25 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   # rescue_from ActiveRecord::RecordNotFound, with: :record_now_found_handler
-  around_action :shower
+  #around_action :shower
   # GET /posts or /posts.json
   def index
     @posts = Post.all
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @posts.to_xml  }
+        format.json { render json: @posts}
+      end
   end
 
-  def shower
-    puts 'params'
-    yield
-    puts 'request'
-    puts request.body.read
-    puts 'response'
-    puts response.to_a
-  end
+  #def shower
+  #  puts 'params'
+  #  yield
+  #  puts 'request'
+  #  puts request.body.read
+  #  puts 'response'
+  #  puts response.to_a
+  #end
 
   def show
     respond_to do |format|
