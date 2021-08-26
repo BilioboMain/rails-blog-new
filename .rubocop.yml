@@ -5,6 +5,7 @@ AllCops:
     - 'db/**/*'
     - 'config/**/*'
     - 'bin/**'
+    - 'Rakefile'
 
 Layout/LineLength:
   Max: 300
@@ -14,3 +15,8 @@ Style/Documentation:
 Metrics/MethodLength:
   Max: 1000
 
+require: rubocop-rails
+Metrics/AbcSize:
+  # The ABC size is a calculated magnitude, so this number can be a Fixnum or
+  # a Float.
+  Max: 50 

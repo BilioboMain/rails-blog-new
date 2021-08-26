@@ -8,18 +8,18 @@ require_relative 'config/application'
 Rails.application.load_tasks
 
 task :default do
-  puts "Time now: #{Time.now}"
+  puts "Time now: #{Time.zone.now}"
 end
 
 desc 'Show time'
 
 task current_time: :set_timezone do
-  puts "Time now: #{Time.now}"
+  puts "Time now: #{Time.zone.now}"
 end
 
 desc 'Set time zone'
 
-task :set_timezone do
+task set_timezone: :environment do
   ENV['TZ'] = 'UTC'
 end
 
@@ -51,7 +51,7 @@ end
 #
 
 # Dirname = name of directory to create
-task :manipulate_files do
+task manipulate_files: :environment do
   mkdir ENV['DIRNAME'].to_s
   # chmod 0777, 'lukasz'nt
   # touch 'lukasz/wrobel.txt'

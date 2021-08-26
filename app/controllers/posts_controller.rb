@@ -1,36 +1,37 @@
 # frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   private
-    def record_not_found
-      render plain: "Sorry,but there is no such record", status: 404
-    end
-end
 
+  def record_not_found
+    render plain: 'Sorry,but there is no such record', status: :not_found
+  end
+end
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   # rescue_from ActiveRecord::RecordNotFound, with: :record_now_found_handler
-  #around_action :shower
+  # around_action :shower
   # GET /posts or /posts.json
   def index
     @posts = Post.all
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @posts.to_xml  }
-        format.json { render json: @posts}
-      end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render xml: @posts.to_xml }
+      format.json { render json: @posts }
+    end
   end
 
-  #def shower
+  # def shower
   #  puts 'params'
   #  yield
   #  puts 'request'
   #  puts request.body.read
   #  puts 'response'
   #  puts response.to_a
-  #end
+  # end
 
   def show
     respond_to do |format|
@@ -59,10 +60,6 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def putetter
-    puts 'bbbbbbb'
-  end
-
   # GET /posts/1/edit
   def edit; end
 
@@ -75,11 +72,11 @@ class PostsController < ApplicationController
     # raise 'Params are not permitted' if post_params.permitted!= true
     @post = Post.new(post_params)
     respond_to do |format|
-      if (post_params[:title] != "" || post_params[:body]!="") && @post.save
+      if (post_params[:title] != '' || post_params[:body] != '') && @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
-        flash.alert = "We can not create posts without any titly or body"
+        flash.alert = 'We can not create posts without any titly or body'
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
