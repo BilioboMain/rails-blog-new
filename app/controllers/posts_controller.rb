@@ -1,4 +1,13 @@
 # frozen_string_literal: true
+class ApplicationController < ActionController::Base
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
+  private
+    def record_not_found
+      render plain: "Sorry,but there is no such record", status: 404
+    end
+end
+
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
@@ -26,6 +35,7 @@ class PostsController < ApplicationController
   def show
     respond_to do |format|
       format.html
+      format.json
       format.pdf do
         render pdf: 'file_name', template: 'posts/show.html.erb' # Excluding ".pdf" extension.
       end
