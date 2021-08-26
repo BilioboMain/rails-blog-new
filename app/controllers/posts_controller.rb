@@ -65,10 +65,11 @@ class PostsController < ApplicationController
     # raise 'Params are not permitted' if post_params.permitted!= true
     @post = Post.new(post_params)
     respond_to do |format|
-      if @post.save
+      if (post_params[:title] != "" || post_params[:body]!="") && @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
+        flash.alert = "We can not create posts without any titly or body"
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
