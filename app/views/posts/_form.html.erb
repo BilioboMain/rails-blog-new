@@ -11,6 +11,14 @@
     </div>
   <% end %>
 
+<% flash.each do |type, msg| %>
+  <div>
+  <h1 style="color:red;">
+    <%= msg %>
+    </h1>
+  </div>
+<% end %>
+
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
