@@ -12,9 +12,7 @@
     </tr>
   </thead>
 
-  <% @posts.each do |post| %>
-  <%= render partial: "shared/index", locals: { post: post } %>
-  <% end %>
+<%= render partial: "shared/options_layout", :collection => @posts,:as => :post, layout: "shared/index"%>
 
 </table>
 
