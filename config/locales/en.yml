@@ -31,3 +31,24 @@
 
 en:
   hello: "Hello world"
+  title: "Title"
+  posts: "Posts"
+  body: "Body"
+  published: "Published"
+  new: "New"
+  show: "Show"
+  edit: "Edit"
+  destroy: "Destroy"
+  newpost: "New Post"
+de:
+  hello: "Hallo World"
+  title: "Titel"
+  posts: "Beiträge"
+  body: "Karosserie"
+  published: "Veröffentlicht"
+  new: "Neu"
+  show: "Zeigen"
+  edit: "Bearbeiten"
+  destroy: "Zerstören"
+  newpost: "Neuer Beitrag"
+
