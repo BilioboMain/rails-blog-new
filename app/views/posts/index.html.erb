@@ -3,7 +3,8 @@
 <h1><%= t :posts %></h1>
 <table>
 <%= render partial: "shared/titles"%>
-<%= render partial: "shared/render", :collection => @posts,:as => :post %>
+
+<%= render partial: "shared/render", :collection => @posts,:as => :post ,spacer_template: "shared/divider"%>
 </table>
 <br>
 <a href="<%= new_post_path %>"><%= t :newpost %></a>

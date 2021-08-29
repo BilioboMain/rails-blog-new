@@ -4,7 +4,7 @@
         <td><%= post.title %></td>
         <td><%= post.body %></td>
         <td><%= post.published %></td>
-        <td><a href="<%= @post %>"><%= t :show %></a></td>
+        <td><a href="<%= post_path(post) %>"><%= t :show %></a></td>
         <td><a href="<%= edit_post_path(post) %>"><%= t :edit %></a></td>
         <td><a><%= link_to "delete",post, method: :delete, data: { confirm: 'Are you sure?' } %></a></td>
       </tr>
