@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   # rescue_from ActiveRecord::RecordNotFound, with: :record_now_found_handler
   # around_action :shower
   # GET /posts or /posts.json
-  
+
   def index
     @posts = Post.all
     respond_to do |format|
